@@ -39,7 +39,7 @@ api = Flask(__name__)
 def new_map():
     try:
         # Marker data from the request
-        markers = request.args.get('markers')
+        markers = request.args.get('q')
         # Parse from a json string into a map
         markers = json.loads(markers)
 
