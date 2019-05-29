@@ -35,11 +35,11 @@ api = Flask(__name__)
 # brief:
 # Takes marker data and parses it into
 # a Python map and processes and saves it
-@api.route('/new_map')
+@api.route('/new_map', methods=['GET', 'POST'])
 def new_map():
     try:
         # Marker data from the request
-        markers = request.args.get('q')
+        markers = request.form('q')
         # Parse from a json string into a map
         markers = json.loads(markers)
 
