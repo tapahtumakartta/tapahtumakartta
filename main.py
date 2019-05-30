@@ -4,6 +4,7 @@ from flask import request
 import json
 import time
 import hashlib
+from flask_cors import CORS
 
 
 # function gen_hash
@@ -26,6 +27,7 @@ def gen_hash(for_admin):
 
 # Initiate the api app
 api = Flask(__name__)
+CORS(api)
 
 
 # REST API paths:
@@ -54,7 +56,8 @@ def new_map():
             "admin_hash": hash_admin,
             "user_hash": hash_user
         }
-        return json.dumps(response)
+        json_response = json.dumps(response)
+        return json_response
     except TypeError:
         # Print an error if the marker data is flawed
         response = {"status": 400}
