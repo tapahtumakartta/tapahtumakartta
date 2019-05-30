@@ -41,9 +41,8 @@ CORS(api)
 def new_map():
     try:
         # Marker data from the request
-        markers = request.form('q')
         # Parse from a json string into a map
-        markers = json.loads(markers)
+        markers = request.get_json()
 
         # Get hashes for the admin and the user views
         hash_admin = gen_hash(True)
