@@ -21,7 +21,7 @@ def gen_hash(for_admin):
 
     # If a hash for the admin was requested, make a longer one
     if for_admin:
-        hash_str += hashlib.md5(hash_str).hexdigest()
+        hash_str += hashlib.md5(epoch.encode() * 2).hexdigest()
     return hash_str
 
 
