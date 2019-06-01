@@ -31,6 +31,15 @@ CORS(api)
 
 
 # REST API paths:
+# ---------------
+# root handler
+# brief:
+# Show an error message by default as the root
+# is not used for API use
+@api.route('/')
+def empty_root():
+    return "/ seems quite empty."
+
 # new_map handler
 # params:
 # markers - json string - marker data
