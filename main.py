@@ -26,12 +26,12 @@ def gen_hash(for_admin):
 
 
 # Initiate the api app
-api = Flask(__name__, template_folder='.')
-CORS(api)                            # ^ HTML DIR
+api = Flask(__name__)
+CORS(api)
 
 
 # Define the path to the frontend interface
-FRONTEND = "tapahtumakartta-interface/index.html"
+FRONTEND = "index.html"
 
 
 # REST API paths:
