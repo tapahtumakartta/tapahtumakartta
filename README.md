@@ -56,4 +56,4 @@ or viewing the data applied into the map. OpenStreetMap will be embedded into th
 ## Deployment
 0. Install dependencies
 1. Clone the repo with `$ git clone https://github.com/tapahtumakartta/tapahtumakartta.git`
-2. Run the install script `# ./tapahtumakartta/INSTALL.sh`
+2. Run the install script `# ./tapahtumakartta/install/INSTALL.sh`
