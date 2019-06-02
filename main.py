@@ -26,7 +26,7 @@ def gen_hash(for_admin):
 
 
 # Initiate the api app
-api = Flask(__name__, root_path='tapahtumakartta-interface/')
+api = Flask(__name__)
 CORS(api)
 
 

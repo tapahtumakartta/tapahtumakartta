@@ -1,4 +1,5 @@
-tapahtumakartta-interface
+static/*
+templates/*
 *.xml
 *.iml
 *.html
