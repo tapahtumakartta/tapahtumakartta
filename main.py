@@ -31,9 +31,12 @@ api = Flask(__name__)
 # Define the path to the frontend interface
 FRONTEND = "index.html"
 
+# Define an REST API path
+REST = "/rest/"
 
-# REST API paths:
-# ---------------
+
+# Server paths:
+# -------------
 # root handler
 # brief:
 # Show an error message by default as the root
@@ -42,13 +45,16 @@ FRONTEND = "index.html"
 def index():
     return render_template(FRONTEND)
 
+
+# REST API paths:
+# -------------
 # new_map handler
 # params:
 # markers - json string - marker data
 # brief:
 # Takes marker data and parses it into
 # a Python map and processes and saves it
-@api.route('/new_map', methods=['GET', 'POST'])
+@api.route(REST + 'new_map', methods=['GET', 'POST'])
 def new_map():
     try:
         # Marker data from the request
