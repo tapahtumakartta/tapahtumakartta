@@ -47,7 +47,13 @@ or viewing the data applied into the map. OpenStreetMap will be embedded into th
 
 ### Backend
 * Flask: for setting up a REST API
+* Apache 2: for proxying the server to port 80 and 443
 
 ### Frontend
 * Leaflet.py
 * Google Fonts  
+
+## Deployment
+0. Install dependencies
+1. Clone the repo with `$ git clone https://github.com/tapahtumakartta/tapahtumakartta.git`
+2. Run the install script `# ./tapahtumakartta/INSTALL.sh`
