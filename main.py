@@ -30,7 +30,6 @@ api = Flask(__name__)
 
 # Define the path to the frontend interface
 FRONTEND = "index.html"
-
 # Define an REST API path
 REST = "/rest/"
 
@@ -47,7 +46,7 @@ def index():
 
 
 # REST API paths:
-# -------------
+# ---------------
 # new_map handler
 # params:
 # markers - json string - marker data
@@ -78,6 +77,17 @@ def new_map():
         # Print an error if the marker data is flawed
         response = {"status": 400}
         return json.dumps(response)
+
+
+# Map paths:
+# ----------
+# map handler
+# brief:
+# Displays a shared map associated with
+# the given hash
+@api.route('/map')
+def show_map():
+    return "Showing a map"
 
 
 if __name__ == '__main__':
