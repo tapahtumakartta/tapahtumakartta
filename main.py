@@ -30,6 +30,10 @@ api = Flask(__name__, template_folder='.')
 CORS(api)                            # ^ HTML DIR
 
 
+# Define the path to the frontend interface
+FRONTEND = "tapahtumakartta-interface/index.html"
+
+
 # REST API paths:
 # ---------------
 # root handler
@@ -38,7 +42,7 @@ CORS(api)                            # ^ HTML DIR
 # is not used for API use
 @api.route('/')
 def index():
-    return render_template("index.html")
+    return render_template(FRONTEND)
 
 # new_map handler
 # params:
