@@ -1,5 +1,5 @@
 # Import modules
-from flask import Flask
+from flask import Flask, render_template
 from flask import request
 import json
 import time
@@ -26,8 +26,8 @@ def gen_hash(for_admin):
 
 
 # Initiate the api app
-api = Flask(__name__)
-CORS(api)
+api = Flask(__name__, template_folder='.')
+CORS(api)                            # ^ HTML DIR
 
 
 # REST API paths:
@@ -37,8 +37,8 @@ CORS(api)
 # Show an error message by default as the root
 # is not used for API use
 @api.route('/')
-def empty_root():
-    return "/ seems quite empty."
+def index():
+    return render_template("index.html")
 
 # new_map handler
 # params:
