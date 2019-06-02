@@ -3,6 +3,9 @@ Backend and web interface for the event map
 
 ![front page](https://i.imgur.com/lDrKsYm.png)
 
+## About
+Tapahtumakartta is an easy tool, which you can use to create maps with custom markers.
+
 ## Requirements specification
 The interface consits of two main parts
 * editor panel
