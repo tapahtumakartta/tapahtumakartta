@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+TAPAHTUMAKARTTA
+https://github.com/tapahtumakartta/tapahtumakartta-interface
+
+Licensed under the
+GNU General Public License v3.0
+
+Description:
+  Main interface for the homepage of the Tapahtumakartta event map
+-->
+<html lang="fi">
+  <head>
+    <title>Tapahtumakartta</title>
+
+    <meta charset="utf-8">
+    <meta property="og:title" content="Tapahtumakartta">
+    <meta name="description" content="Luo kartta kustomoiduilla pisteillä ja jaa se kavereillesi nopeasti ja helposti.">
+    <meta property="og:description" content="Luo kartta kustomoiduilla pisteillä ja jaa se kavereillesi nopeasti ja helposti.">
+    <meta name="keywords" content="tapahtumakartta">
+    <meta name="author" content="@jakonen, @vilukissa68">
+    <meta property="og:image" content="https://map.vey.cool/data/marker.png">
+
+    <!-- Load external resources -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.4.0/leaflet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.4.0/leaflet.js"></script>
+
+    <!-- Load internal resources -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Optimize for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  </head>
+  <body>
+	<!-- Response modal -->
+	<div id="resModal" class="modal">
+	  <div class="modal-content">
+		<span class="close">&times;</span>
+		<p id="resInfoArea"></p>
+	  </div>
+	</div>
+    <div>
+        <div class="search-bar">
+            <input type="text" method="put" id="search-bar-field" placeholder="Tampere">
+            <button type="button" id="search-bar-button" onclick="searchPlace();"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+    <!-- Button for saving changes and creating a new map -->
+    <div class="button" onclick="sendData()">
+      <p class="button-text">Jaa tämä kartta</p>
+    </div>
+
+    <!-- Main map element -->
+    <div id="map"></div>
+	
+	<!-- Load modal js functions -->
+	<script src="/static/modal.js"></script>
+    <!-- Load the main js functions -->
+    <script src="/static/app.js"></script>
+  </body>
+</html>
