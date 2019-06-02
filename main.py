@@ -4,7 +4,6 @@ from flask import request
 import json
 import time
 import hashlib
-from flask_cors import CORS
 
 
 # function gen_hash
@@ -27,7 +26,6 @@ def gen_hash(for_admin):
 
 # Initiate the api app
 api = Flask(__name__)
-CORS(api)
 
 
 # Define the path to the frontend interface

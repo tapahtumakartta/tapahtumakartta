@@ -7,6 +7,3 @@ Backend for the event map
 
 ### Dependencies
 - Flask: for setting up a REST API
-- Flash-cors: for enabling cross-domain requests (rest api)
-
- W.I.P
