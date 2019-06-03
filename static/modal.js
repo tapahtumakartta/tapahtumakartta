@@ -17,6 +17,15 @@ var responseModalTxt = document.getElementById("resInfoArea");
 // Response modal close button element
 var responseModalCloseBtn = document.getElementsByClassName("close")[0];
 
+
+// When the user clicks on the share button,
+// open the response modal
+function modalPopUp(data) {
+  responseModal.style.display = "block";
+  responseModalTxt.innerHTML = data;
+}
+
+
 // Close the modal
 responseModalCloseBtn.onclick = function() {
   responseModal.style.display = "none";
