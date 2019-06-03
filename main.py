@@ -17,11 +17,13 @@ def gen_hash(for_admin):
     # Generate "randomness" using the current epoch time
     epoch = str(time.time())
 
-    # Generate a hash from the time str for admins
     if for_admin:
+        # Generate a hash from the time str for admins
+        # Probability of collision 2.9387359e-39
         hash_str = hashlib.md5(epoch.encode()).hexdigest()
     else:
         # For user hash, generate a short random string
+        # Probability of collision 4.5800105e-15
         hash_str = ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=8))
 
     return hash_str

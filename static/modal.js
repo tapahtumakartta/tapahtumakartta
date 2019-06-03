@@ -9,27 +9,20 @@ Description:
   HTML modal logic
 */
 
-// Get the modal
-var modal = document.getElementById("resModal");
-// Get the text area
-var textArea = document.getElementById("resInfoArea");
-
-// Get the close elements
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-function modalPopUp(data) {
-  modal.style.display = "block";
-  textArea.innerHTML = data;
-}
+// Create handles to the DOM elements
+// Response modal
+var responseModal = document.getElementById("resModal");
+// Response modal text area
+var responseModalTxt = document.getElementById("resInfoArea");
+// Response modal close button element
+var responseModalCloseBtn = document.getElementsByClassName("close")[0];
 
 // Close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+responseModalCloseBtn.onclick = function() {
+  responseModal.style.display = "none";
 }
-
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == responseModal) {
+    responseModal.style.display = "none";
   }
 }
