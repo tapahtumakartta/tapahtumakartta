@@ -93,13 +93,22 @@ def new_map():
 
 # Map paths:
 # ----------
-# map handler
+# map handler for user
 # brief:
 # Displays a shared map associated with
 # the given hash
 @api.route('/u/<user_hash>')
 def show_map(user_hash):
     return "Showing a map with hash " + user_hash
+
+
+# map handler for admin
+# brief:
+# Displays a shared map associated with
+# the given hash
+@api.route('/a/<admin_hash>')
+def show_map(admin_hash):
+    return "Showing an admin panel with hash " + admin_hash
 
 
 if __name__ == '__main__':
