@@ -82,18 +82,28 @@ function panMap(json) {
   }
 }
 
+
+/* Deletes a marker with the given id*/
+function deleteMarker(id) {
+  map.removeLayer(markers[id]);
+}
+
+
 /* Adds a marker to the Map
  * Is called on mouse click
  */
 function addMarker(e) {
   var marker = L.marker(e.latlng).addTo(map);
+
+  // Get the marker id from the marker list size
+  let markerId = markers.length;
   marker.on('click', function(){
     // Associate methods, that are run on click, with the marker
-    var popupContent = '<form>\
+    let popupContent = '\
       <input id="input-name" type="text" placeholder="Nimi"><br>\
       <input id="input-desc" type="text" placeholder="Kuvaus"><br>\
       <button id="marker-save" type="button">Tallenna</button>\
-    </form>';
+      <button onclick="deleteMarker(' + markerId + ')" type="button">Poista</button>';
     marker.bindPopup(popupContent);
   });
   markers.push(marker);
