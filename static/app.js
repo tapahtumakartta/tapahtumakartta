@@ -36,6 +36,7 @@ L.tileLayer(
  * Is called on button press
 */
 function sendData() {
+  console.log("Send");
   var markerData = [];
   var markerTmp = {};
 
@@ -88,6 +89,12 @@ function addMarker(e) {
   var marker = L.marker(e.latlng).addTo(map);
   marker.on('click', function(){
     // Associate methods, that are run on click, with the marker
+    var popupContent = '<form>\
+      <input id="input-name" type="text" placeholder="Nimi"><br>\
+      <input id="input-desc" type="text" placeholder="Kuvaus"><br>\
+      <button id="marker-save" type="button">Tallenna</button>\
+    </form>';
+    marker.bindPopup(popupContent);
   });
   markers.push(marker);
 }
