@@ -117,11 +117,11 @@ function httpMapDataAsync(theUrl, callback, method, data = null){
 /* Receives the data from an external resource */
 function receiveResponse(response) {
   // Parse data for the user
+  var domain = "https://map.vey.cool/";
   var responseObject = JSON.parse(response);
-  var parsedResponse = "https://map.vey.cool/";
-  parsedResponse += responseObject["user_hash"];
-	// TODO: implement admin hash sharing here
-	// and add necessary HTML stuff
+  var parsedResponse = [domain + responseObject["admin_hash"],
+                        domain + responseObject["user_hash"]];
+
 
   // Use the function from modal.js to open the
   // modal popup with the response information

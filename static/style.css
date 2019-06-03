@@ -113,3 +113,10 @@ html, body {
   text-decoration: none;
   cursor: pointer;
 }
+
+#resInfoArea i {
+  display: block;
+  width: 450px;
+  height: 30px;
+  background: #f4f4f4;
+}

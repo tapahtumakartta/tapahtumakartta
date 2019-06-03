@@ -22,7 +22,11 @@ var responseModalCloseBtn = document.getElementsByClassName("close")[0];
 // open the response modal
 function modalPopUp(data) {
   responseModal.style.display = "block";
-  responseModalTxt.innerHTML = data;
+  var hash_1 = document.getElementById("hash1");
+  var hash_2 = document.getElementById("hash2");
+
+  hash_1.innerHTML = data[0];
+  hash_2.innerHTML = data[1];
 }
 
 
