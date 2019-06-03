@@ -147,10 +147,10 @@ function httpMapDataAsync(theUrl, callback, method, data = null){
 /* Receives the data from an external resource */
 function receiveResponse(response) {
   // Parse data for the user
-  var domain = "https://map.vey.cool/";
+  var domain = window.location.origin;
   var responseObject = JSON.parse(response);
-  var parsedResponse = [domain + responseObject["admin_hash"],
-                        domain + responseObject["user_hash"]];
+  var parsedResponse = [domain + "/a/" + responseObject["admin_hash"],
+                        domain + "/u/" + responseObject["user_hash"]];
 
   // Use the function from modal.js to open the
   // modal popup with the response information

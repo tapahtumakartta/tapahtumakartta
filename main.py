@@ -91,9 +91,9 @@ def new_map():
 # brief:
 # Displays a shared map associated with
 # the given hash
-@api.route('/map')
-def show_map():
-    return "Showing a map"
+@api.route('/u/<user_hash>')
+def show_map(user_hash):
+    return "Showing a map with hash " + user_hash
 
 
 if __name__ == '__main__':
