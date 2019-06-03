@@ -37,6 +37,8 @@ api = Flask(__name__)
 FRONTEND = "index.html"
 # Define an REST API path
 REST = "/rest/"
+# Define map data dir
+MATH_PATH = "maps/"
 
 
 # Server paths:
@@ -99,8 +101,7 @@ def new_map():
 # the given hash
 @api.route('/u/<user_hash>')
 def show_map(user_hash):
-    map_path = "maps/"
-    map_files = os.listdir(map_path)
+    map_files = os.listdir(MATH_PATH)
     map_str = "Error"
 
     for i in map_files:
@@ -118,7 +119,16 @@ def show_map(user_hash):
 # the given hash
 @api.route('/a/<admin_hash>')
 def show_admin_panel(admin_hash):
-    return "Showing an admin panel with hash " + admin_hash
+    map_files = os.listdir(MATH_PATH)
+    map_str = "Error"
+
+    for i in map_files:
+        if i.split("_")[0] == admin_hash:
+            map_data = open("maps/" + i, "r")
+            map_str = map_data.read()
+            break
+
+    return map_str
 
 
 if __name__ == '__main__':
