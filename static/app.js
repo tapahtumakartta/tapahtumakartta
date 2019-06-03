@@ -32,6 +32,22 @@ L.tileLayer(
 ).addTo(map);
 
 
+/* Get predefined markers */
+var preMarkers = document.getElementsByClassName("map_data")[0].innerHTML;
+preMarkers = JSON.parse(preMarkers);
+
+// If there are predefined markers,
+// print them on the map
+if (preMarkers.length != 0) {
+  console.log(preMarkers);
+  loadMarkers()
+}
+
+for (var iterator in preMarkers) {
+  addMarker(e = null, preMarkers[iterator]);
+}
+
+
 /* Sends pointer data to the backend server
  * Is called on button press
 */
@@ -102,11 +118,23 @@ function deleteMarker(id) {
 }
 
 
+/* Print predefined markers on the map */
+function loadMarkers() {
+
+}
+
+
 /* Adds a marker to the Map
  * Is called on mouse click
  */
-function addMarker(e) {
-  var marker = L.marker(e.latlng).addTo(map);
+function addMarker(e = null, data = null) {
+  if (e == null) {
+    var marker = L.marker([data["lat"], data["lng"]]).addTo(map);
+    marker["title"] = data["title"];
+    marker["desc"] = data["desc"];
+  } else {
+    var marker = L.marker(e.latlng).addTo(map);
+  }
 
   // Get the marker values from the marker obj size
   let markerId = 0;
@@ -117,12 +145,20 @@ function addMarker(e) {
   console.log("Created: " + markerId);
 
   // Build a form inside the popup
-  // <button onclick="saveMarker(' + markerId + ')" type="button">Tallenna</button>\
   let popupContent = '\
     <input id="input-name-' + markerId + '" type="text" placeholder="Nimi" onkeyup="saveMarker(' + markerId + ')"><br>\
     <input id="input-desc-' + markerId + '" type="text" placeholder="Kuvaus" onkeyup="saveMarker(' + markerId + ')"><br>\
     <button onclick="deleteMarker(' + markerId + ')" type="button">Poista</button>';
-  marker.bindPopup(popupContent).openPopup();
+
+  // Bind a popup to the markers
+  if (e == null) {
+    marker.bindPopup(popupContent);
+  } else {
+    // If the popup was created with a mouse click,
+    // automatically open it
+    marker.bindPopup(popupContent).openPopup();
+  }
+
   marker.on('click', function(){
     // Associate methods, that are run on click, with the marker
     var curTitle = marker["title"];

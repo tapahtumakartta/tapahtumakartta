@@ -49,7 +49,12 @@ MATH_PATH = "maps/"
 # is not used for API use
 @api.route('/')
 def index():
-    return render_template(FRONTEND, site_title="Luo kartta", map_dict={})
+    return render_template(FRONTEND,
+                           site_title="Luo kartta",
+                           map_dict={},
+                           btn_type="Jaa tämä kartta",
+                           btn_function="sendData(true)"
+                           )
 
 
 # REST API paths:
@@ -128,7 +133,12 @@ def show_admin_panel(admin_hash):
             map_str = map_data.read()
             break
 
-    return render_template(FRONTEND, site_title="Muokkaa karttaa", map_dict=map_str)
+    return render_template(FRONTEND,
+                           site_title="Muokkaa karttaa",
+                           map_dict=map_str,
+                           btn_type="Tallenna kartta",
+                           btn_function="sendData(false)"
+                           )
 
 
 if __name__ == '__main__':
