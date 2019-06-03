@@ -1,6 +1,8 @@
 # Import modules
 from flask import Flask, render_template
 from flask import request
+import string
+import random
 import json
 import time
 import hashlib
@@ -15,12 +17,13 @@ def gen_hash(for_admin):
     # Generate "randomness" using the current epoch time
     epoch = str(time.time())
 
-    # Generate a hash from the time str
-    hash_str = hashlib.md5(epoch.encode()).hexdigest()
-
-    # If a hash for the admin was requested, make a longer one
+    # Generate a hash from the time str for admins
     if for_admin:
-        hash_str += hashlib.md5(epoch.encode() * 2).hexdigest()
+        hash_str = hashlib.md5(epoch.encode()).hexdigest()
+    else:
+        # For user hash, generate a short random string
+        hash_str = ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=8))
+
     return hash_str
 
 
