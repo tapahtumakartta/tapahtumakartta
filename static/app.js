@@ -36,6 +36,10 @@ L.tileLayer(
  * Is called on button press
 */
 function sendData() {
+  if (Object.keys(markers).length == 0) {
+    alert("Kartta tyhjä. Luo merkki klikkaamalla karttaa.");
+    return;
+  }
   console.log("Send");
   var markerData = [];
   var markerTmp = {};
@@ -83,7 +87,16 @@ function panMap(json) {
 }
 
 
-/* Deletes a marker with the given id*/
+/* Saves data to a marker */
+function saveMarker(id) {
+  markers[id]["title"] = document.getElementById("input-name-" + id).value;
+  markers[id]["desc"] = document.getElementById("input-desc-" + id).value;
+
+  console.log(markers);
+}
+
+
+/* Deletes a marker with the given id */
 function deleteMarker(id) {
   map.removeLayer(markers[id]);
   delete markers[id];
@@ -101,11 +114,11 @@ function addMarker(e) {
 
   // Associate methods, that are run on click, with the marker
   let popupContent = '\
-    <input id="input-name" type="text" placeholder="Nimi"><br>\
-    <input id="input-desc" type="text" placeholder="Kuvaus"><br>\
-    <button id="marker-save" type="button">Tallenna</button>\
+    <input id="input-name-' + markerId + '" type="text" placeholder="Nimi"><br>\
+    <input id="input-desc-' + markerId + '" type="text" placeholder="Kuvaus"><br>\
+    <button onclick="saveMarker(' + markerId + ')" type="button">Tallenna</button>\
     <button onclick="deleteMarker(' + markerId + ')" type="button">Poista</button>';
-  marker.bindPopup(popupContent);
+  marker.bindPopup(popupContent).openPopup();
   marker.on('click', function(){
     // Placeholder
   });
