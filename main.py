@@ -14,10 +14,10 @@ import hashlib
 # brief:
 # Generates an md5 hash based on the current epoch time
 def gen_hash(for_admin):
-    # Generate "randomness" using the current epoch time
-    epoch = str(time.time())
-
     if for_admin:
+        # Generate "randomness" using the current epoch time
+        epoch = str(time.time())
+
         # Generate a hash from the time str for admins
         # Probability of collision 2.9387359e-39
         hash_str = hashlib.md5(epoch.encode()).hexdigest()
