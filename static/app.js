@@ -54,9 +54,6 @@ function sendData() {
   // Turn the marker array into a string
   var markerStr = JSON.stringify(markerData);
 
-  // For debugging, show the number of markers
-  console.log("Sending " + markerData.length + " markers");
-
   // Send the data to the backend
   var targetUri = REST_API + "new_map";
   httpMapDataAsync(targetUri, receiveResponse, "POST", markerStr);
@@ -93,8 +90,7 @@ function panMap(json) {
 function addMarker(e) {
   var marker = L.marker(e.latlng).addTo(map);
   marker.on('click', function(){
-    console.log(marker._latlng.lat);
-    console.log(marker._latlng.lng);
+    // Associate methods, that are run on click, with the marker
   })
   markers.push(marker);
 }
@@ -120,11 +116,9 @@ function httpMapDataAsync(theUrl, callback, method, data = null){
 
 /* Receives the data from an external resource */
 function receiveResponse(response) {
-  console.log(response);
-
   // Parse data for the user
   var responseObject = JSON.parse(response);
-  var parsedResponse = "https://map.vey.cool/map/";
+  var parsedResponse = "https://map.vey.cool/";
   parsedResponse += responseObject["user_hash"];
 	// TODO: implement admin hash sharing here
 	// and add necessary HTML stuff
