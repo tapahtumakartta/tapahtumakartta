@@ -13,7 +13,7 @@ Description:
 const REST_API = "/rest/";
 
 // Array for storing user-created markers
-var markers = [];
+var markers = {};
 
 // Set the initial center potision of the map
 // Use the city of Jyväskylä with a really minimal zoom level so
@@ -85,6 +85,7 @@ function panMap(json) {
 
 /* Deletes a marker with the given id*/
 function deleteMarker(id) {
+  console.log("Deletin' " + id)
   map.removeLayer(markers[id]);
 }
 
@@ -96,7 +97,7 @@ function addMarker(e) {
   var marker = L.marker(e.latlng).addTo(map);
 
   // Get the marker id from the marker list size
-  let markerId = markers.length;
+  let markerId = Object.keys(markers).length;
 
   // Associate methods, that are run on click, with the marker
   let popupContent = '\
@@ -108,7 +109,7 @@ function addMarker(e) {
   marker.on('click', function(){
     // Placeholder
   });
-  markers.push(marker);
+  markers[markerId] = marker;
 }
 
 /* Get json data */
