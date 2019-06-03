@@ -6,7 +6,7 @@ import random
 import json
 import time
 import hashlib
-
+import os
 
 # function gen_hash
 # params:
@@ -99,7 +99,17 @@ def new_map():
 # the given hash
 @api.route('/u/<user_hash>')
 def show_map(user_hash):
-    return "Showing a map with hash " + user_hash
+    map_path = "maps/"
+    map_files = os.listdir(map_path)
+    map_str = "Error"
+
+    for i in map_files:
+        if i.split("_")[1] == user_hash:
+            map_data = open("maps/" + i, "r")
+            map_str = map_data.read()
+            break
+
+    return map_str
 
 
 # map handler for admin
@@ -107,7 +117,7 @@ def show_map(user_hash):
 # Displays a shared map associated with
 # the given hash
 @api.route('/a/<admin_hash>')
-def show_map(admin_hash):
+def show_admin_panel(admin_hash):
     return "Showing an admin panel with hash " + admin_hash
 
 
