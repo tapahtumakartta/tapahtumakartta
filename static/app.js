@@ -46,8 +46,8 @@ function sendData() {
 
   // Simplify the list of markers by just saving the needed data
   for (item in markers) {
-    markerTmp["title"] = markers[item].options.__proto__.title;
-    markerTmp["desc"] = markers[item].options.__proto__.alt;
+    markerTmp["title"] = markers[item]["title"];
+    markerTmp["desc"] = markers[item]["desc"];
     markerTmp["lat"] = markers[item]._latlng.lat; // Coordinates
     markerTmp["lng"] = markers[item]._latlng.lng;
 

@@ -69,6 +69,12 @@ def new_map():
         hash_admin = gen_hash(True)
         hash_user = gen_hash(False)
 
+        # Write marker data into a file
+        file_name = "maps/" + hash_admin + "_" + hash_user
+        target_file = open(file_name, "w")
+        target_file.write(json.dumps(markers))
+        target_file.close()
+
         # Build a dict from the response parts and
         # turn it into a json string and return
         response = {
