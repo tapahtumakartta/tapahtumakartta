@@ -76,7 +76,7 @@ function panMap(json) {
   if (typeof data["0"] !== "undefined") { // Check if given data is valid
     var lat = data["0"]["lat"];
     var lon = data["0"]["lon"];
-    map.panTo(new L.LatLng(lat, lon));
+    map.setView(new L.LatLng(lat, lon), 14);
   } else {
     document.getElementById("search-bar-field").placeholder = "Place not found";
   }
@@ -97,14 +97,16 @@ function addMarker(e) {
 
   // Get the marker id from the marker list size
   let markerId = markers.length;
+
+  // Associate methods, that are run on click, with the marker
+  let popupContent = '\
+    <input id="input-name" type="text" placeholder="Nimi"><br>\
+    <input id="input-desc" type="text" placeholder="Kuvaus"><br>\
+    <button id="marker-save" type="button">Tallenna</button>\
+    <button onclick="deleteMarker(' + markerId + ')" type="button">Poista</button>';
+  marker.bindPopup(popupContent);
   marker.on('click', function(){
-    // Associate methods, that are run on click, with the marker
-    let popupContent = '\
-      <input id="input-name" type="text" placeholder="Nimi"><br>\
-      <input id="input-desc" type="text" placeholder="Kuvaus"><br>\
-      <button id="marker-save" type="button">Tallenna</button>\
-      <button onclick="deleteMarker(' + markerId + ')" type="button">Poista</button>';
-    marker.bindPopup(popupContent);
+    // Placeholder
   });
   markers.push(marker);
 }
