@@ -1,12 +1,12 @@
 # Import modules
-from flask import Flask, render_template
-from flask import request
+from flask import Flask, render_template, request
 import string
 import random
 import json
 import time
 import hashlib
 import os
+
 
 # function gen_hash
 # params:
@@ -49,7 +49,7 @@ MATH_PATH = "maps/"
 # is not used for API use
 @api.route('/')
 def index():
-    return render_template(FRONTEND)
+    return render_template(FRONTEND, site_title="Luo kartta", map_dict={})
 
 
 # REST API paths:
@@ -128,7 +128,7 @@ def show_admin_panel(admin_hash):
             map_str = map_data.read()
             break
 
-    return map_str
+    return render_template(FRONTEND, site_title="Muokkaa karttaa", map_dict=map_str)
 
 
 if __name__ == '__main__':

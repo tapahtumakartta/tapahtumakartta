@@ -11,7 +11,7 @@ Description:
 -->
 <html lang="fi">
   <head>
-    <title>Tapahtumakartta</title>
+    <title>{{ site_title }}</title>
 
     <meta charset="utf-8">
     <meta property="og:title" content="Tapahtumakartta">
@@ -34,6 +34,10 @@ Description:
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   </head>
   <body>
+  <div class="map_data" style="display:none">
+    {{ map_dict }}
+  </div>
+
   <script type="text/javascript">
     var markerId;
   </script>
