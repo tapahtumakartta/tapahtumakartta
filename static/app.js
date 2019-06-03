@@ -85,8 +85,8 @@ function panMap(json) {
 
 /* Deletes a marker with the given id*/
 function deleteMarker(id) {
-  console.log("Deletin' " + id)
   map.removeLayer(markers[id]);
+  delete markers[id];
 }
 
 
