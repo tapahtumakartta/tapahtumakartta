@@ -63,7 +63,7 @@ def new_map():
     try:
         # Marker data from the request
         # Parse from a json string into a map
-        markers = request.get_json()
+        markers = json.loads(request.data)
 
         # Get hashes for the admin and the user views
         hash_admin = gen_hash(True)
@@ -72,15 +72,16 @@ def new_map():
         # Build a dict from the response parts and
         # turn it into a json string and return
         response = {
-            "status": 200,
+            "success": True,
+            "markers": len(markers),
             "admin_hash": hash_admin,
             "user_hash": hash_user
         }
         json_response = json.dumps(response)
         return json_response
-    except TypeError:
+    except:
         # Print an error if the marker data is flawed
-        response = {"status": 400}
+        response = {"success": False}
         return json.dumps(response)
 
 

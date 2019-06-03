@@ -57,7 +57,6 @@ function sendData() {
   // Send the data to the backend
   var targetUri = REST_API + "new_map";
   httpMapDataAsync(targetUri, receiveResponse, "POST", markerStr);
-  return;
 }
 
 /* Read search bar and parse it into an url to find new location */
@@ -77,11 +76,9 @@ function panMap(json) {
     var lat = data["0"]["lat"];
     var lon = data["0"]["lon"];
     map.panTo(new L.LatLng(lat, lon));
-    }
-
-  else{
+  } else {
     document.getElementById("search-bar-field").placeholder = "Place not found";
-    }
+  }
 }
 
 /* Adds a marker to the Map
@@ -91,7 +88,7 @@ function addMarker(e) {
   var marker = L.marker(e.latlng).addTo(map);
   marker.on('click', function(){
     // Associate methods, that are run on click, with the marker
-  })
+  });
   markers.push(marker);
 }
 
@@ -108,7 +105,7 @@ function httpMapDataAsync(theUrl, callback, method, data = null){
 
     // If data was provided, send it as a parameter
   if (data != null) {
-    xmlHttp.send("q=" + data);
+    xmlHttp.send(data);
   } else {
     xmlHttp.send(null);
   }
@@ -122,11 +119,10 @@ function receiveResponse(response) {
   var parsedResponse = [domain + responseObject["admin_hash"],
                         domain + responseObject["user_hash"]];
 
-
   // Use the function from modal.js to open the
   // modal popup with the response information
   modalPopUp(parsedResponse);
-  return;
+  console.log(responseObject);
 }
 
 /* Prompt for user geolocation and pan the map*/
