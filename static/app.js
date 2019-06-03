@@ -91,14 +91,13 @@ function panMap(json) {
 function saveMarker(id) {
   markers[id]["title"] = document.getElementById("input-name-" + id).value;
   markers[id]["desc"] = document.getElementById("input-desc-" + id).value;
-
-  console.log(markers);
 }
 
 
 /* Deletes a marker with the given id */
 function deleteMarker(id) {
   map.removeLayer(markers[id]);
+  console.log("Remove: " + id);
   delete markers[id];
 }
 
@@ -109,18 +108,32 @@ function deleteMarker(id) {
 function addMarker(e) {
   var marker = L.marker(e.latlng).addTo(map);
 
-  // Get the marker id from the marker list size
-  let markerId = Object.keys(markers).length;
+  // Get the marker values from the marker obj size
+  let markerId = 0;
+  if (Object.keys(markers).length >= 1) {
+    var markerKeys = Object.keys(markers);
+    markerId = Math.max.apply(Math, markerKeys) + 1;
+  }
+  console.log("Created: " + markerId);
 
-  // Associate methods, that are run on click, with the marker
+  // Build a form inside the popup
+  // <button onclick="saveMarker(' + markerId + ')" type="button">Tallenna</button>\
   let popupContent = '\
-    <input id="input-name-' + markerId + '" type="text" placeholder="Nimi"><br>\
-    <input id="input-desc-' + markerId + '" type="text" placeholder="Kuvaus"><br>\
-    <button onclick="saveMarker(' + markerId + ')" type="button">Tallenna</button>\
+    <input id="input-name-' + markerId + '" type="text" placeholder="Nimi" onkeyup="saveMarker(' + markerId + ')"><br>\
+    <input id="input-desc-' + markerId + '" type="text" placeholder="Kuvaus" onkeyup="saveMarker(' + markerId + ')"><br>\
     <button onclick="deleteMarker(' + markerId + ')" type="button">Poista</button>';
   marker.bindPopup(popupContent).openPopup();
   marker.on('click', function(){
-    // Placeholder
+    // Associate methods, that are run on click, with the marker
+    var curTitle = marker["title"];
+    var curDesc = marker["desc"];
+
+    if (curTitle != undefined) {
+      document.getElementById("input-name-" + markerId).value = curTitle;
+    }
+    if (curDesc != undefined) {
+      document.getElementById("input-desc-" + markerId).value = curDesc;
+    }
   });
   markers[markerId] = marker;
 }
