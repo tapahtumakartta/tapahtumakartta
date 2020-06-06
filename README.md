@@ -1,10 +1,10 @@
 # Tapahtumakartta
-Backend and web interface for the event map
+Backend and web interface for the event map WIP
 
 ![front page](https://i.imgur.com/lDrKsYm.png)
 
 ## About
-Tapahtumakartta is an easy tool, which you can use to create maps with custom markers.
+Tapahtumakartta is an easy tool, which you can use to create shareable event maps with custom markers.
 
 ## Requirements specification
 The interface consits of two main parts
@@ -42,18 +42,16 @@ or viewing the data applied into the map. OpenStreetMap will be embedded into th
 ## API URLs
 /new_map: saves the provided data into a file and returns hashes for accessing and editing the map  
  params: q - json string with marker data
+ 
+/u/<user_hash>: shows the map associated to given user hash
+ params: user_hash - hash for identifying the map to return
 
 ## Dependencies
 
-### Backend
-* Flask: for setting up a REST API
-* Apache 2: for proxying the server to port 80 and 443
-
-### Frontend
-* Leaflet.py
-* Google Fonts  
+- Flask: for setting up a REST API
+- Apache 2: for proxying the server to port 80 and 443
 
 ## Deployment
-0. Install dependencies
-1. Clone the repo with `$ git clone https://github.com/tapahtumakartta/tapahtumakartta.git`
-2. Run the install script `# ./tapahtumakartta/install/INSTALL.sh`
+1. Install dependencies
+2. Clone the repo with `$ git clone https://github.com/tapahtumakartta/tapahtumakartta.git`
+3. Run the install script `# ./tapahtumakartta/install/INSTALL.sh`
